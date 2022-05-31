@@ -1,0 +1,16 @@
+﻿@using VLTECH.Models;
+@model List<Hangsanxuat>
+
+
+<br />
+
+<div class="bg-success" style="background-color: #BC0022; border-radius: 5px; height: 80px;">
+    <h3 style="color: white; padding-top: 10px; padding-left: 10px; "> HÃNG SẢN XUẤT  </h3>
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <a href="#" style="font-size: medium; position: relative; left: 17px; padding-right: 10px;padding-left: 10px; color: white; text-decoration: none;"> @item.Tenhang</a>
+        }
+    </div>
+</div>

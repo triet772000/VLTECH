@@ -1,0 +1,55 @@
+﻿@using VLTECH.Models
+@model Sanpham
+
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<style>
+    #left {
+        float: left;
+        width: 50%;
+        text-align: center;
+        padding-bottom: 40px;
+    }
+
+    #right {
+        float: left;
+        width: 50%;
+    }
+    #btn-muahang {
+        text-align: center;
+    }
+
+    #btn-muahang input{
+        width: 180px;
+        height: 40px;
+        color: white;
+        background-color: #00d311;
+        border: none;
+    }
+</style>
+<br />
+
+    <div id="content">
+         <h2 style="text-align: center;">CHI TIẾT SẢN PHẨM</h2>
+         <div id="left">
+             <img src="@Url.Content(@Model.Anhbia)" style="width: 400; height: 400px;" />
+         </div>
+         <div id="right">
+             <h3> @Model.Tensp</h3>
+             <h2 style="color:red">@String.Format("{0:0,0}", @Model.Giatien) VNĐ</h2>
+             <h3>Mô tả sản phẩm</h3>
+             @Model.Mota
+             <br />
+             <br />
+             <div id="btn-muahang">
+                 @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = Model.Masp, @strURL = Request.Url.ToString() }))
+                 {
+                     <input type="submit" value="Thêm vào giỏ hàng" id="bgnGioHang" />
+
+                 }
+             </div>
+         </div>     
+    </div>

@@ -1,0 +1,19 @@
+﻿<style type="text/css">
+    .giohang{
+        color:white;     
+    }
+
+    .cart-number {
+        padding: 0;
+        margin: 0px;
+        font-size: 13px;
+        color: #BC0022;
+        position: relative;
+        top: -25px;
+        left: 16px;
+    }
+
+</style>
+
+<a href="@Url.Action("GioHang","GioHang")" class="giohang" ><i class="fa fa-shopping-cart"> <div class="cart-number"><b>@ViewBag.TongSoLuong</b></div></i></a>
+

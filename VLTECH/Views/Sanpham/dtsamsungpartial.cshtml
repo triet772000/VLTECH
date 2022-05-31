@@ -1,0 +1,47 @@
+﻿@using VLTECH.Models;
+@model PagedList.IPagedList<VLTECH.Models.Sanpham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Samsung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class=" bg-danger; style="background-color: none; justify-content: center"><h3 style="border-bottom: 2px solid #808080; width: 300px; text-align: center; position: relative; left: 420px;"> SAMSUNG </h3></div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">
+                <img src=@Url.Content(item.Anhbia) class="img-responsive" alt="" width="400" height="400" />
+            </a>
+            <center>
+                <h3> @item.Tensp</h3>
+                <h3 style="color:red">@String.Format("{0:0,0}", item.Giatien) VNĐ</h3>
+                <br />
+
+                @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
+
+
+            </center>
+
+        </div>
+    }
+
+
+    @*<div class="col-md-3 col-sm-6">
+            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+        </div>*@
+</div>
+</br>
+<div style="text-align: center; font-size: 15px">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("dtsamsungpartial", "Sanpham", new { page }))
+</div>
+
+

@@ -1,0 +1,53 @@
+﻿@model VLTECH.Models.Nguoidung
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết người dùng</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hoten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hoten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dienthoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dienthoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diachi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diachi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div style="text-align: center;">
+        <div class="btn btn-default" style="background-color: #179d02; text-decoration: none;">@Html.ActionLink("Edit", "Edit", new { id = Model.MaNguoiDung })</div>
+        <div class="btn btn-default" style="background-color: #ff0000; text-decoration: none;">@Html.ActionLink("Back to List", "Index")</div>
+    </div>
+</p>

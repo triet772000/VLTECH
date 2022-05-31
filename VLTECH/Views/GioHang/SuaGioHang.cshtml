@@ -1,0 +1,97 @@
+﻿@using VLTECH.Models;
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    double Tongtien = 0;
+}
+<center><h2 class="text-info"> GIỎ HÀNG</h2></center>
+@using (Html.BeginForm("CapNhatGioHang", "GioHang", FormMethod.Post))
+{
+    <table class="table-bordered font-italic divGioHang">
+        <tr>
+            <th> Mã SP</th>
+
+            <th> Tên SP</th>
+
+            <th> Ảnh bìa</th>
+
+            <th> Đơn giá</th>
+
+            <th> Số lượng</th>
+
+            <th> Thành tiền</th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            Tongtien += item.ThanhTien;
+            <tr>
+                <td> @item.iMasp</td>
+
+                <td> @item.sTensp</td>
+
+                <td> <img src="@Url.Content(item.sAnhbia)" width="50" height="50" /></td>
+
+                <td>  @String.Format("{0:0,0}", item.dDonGia) VNĐ</td>
+
+                <td>@Html.TextBox("txtSoLuong", item.iSoLuong) </td>
+
+                <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+
+                <td>
+                    <button class="btn-success">@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.iMasp })</button>
+                </td>
+
+            </tr>
+        }
+        <tr>
+            <td colspan="5" style="text-align: left; font-size: 32px;">
+                Tổng tiền: @String.Format("{0:0,0}", Tongtien) VNĐ
+            </td>
+            <td colspan="2" style="text-align: right">
+                <input type="submit" value="Cập nhật" class="btn-secondary" />
+            </td>
+        </tr>
+    </table>
+}
+    @*Css giỏ hàng*@
+    <style type="text/css">
+        .divGioHang {
+            border: 2px solid #EEEEEE;
+            margin-left: 10%;
+            font-size: large
+        }
+
+            .divGioHang td {
+                padding: 10px;
+                border: 2px solid #EEEEEE;
+                text-align: center
+            }
+
+            .divGioHang th {
+                text-align: center
+            }
+
+        table td input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .btn-secondary {
+            width: 150px;
+            background-color: forestgreen;
+            color: white;
+        }
+
+        .btn-success {
+            background-color: red;
+        }
+
+        .btn-success a{
+            color: white;
+        }
+    </style>

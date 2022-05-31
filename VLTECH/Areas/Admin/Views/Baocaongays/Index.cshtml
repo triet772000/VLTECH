@@ -1,0 +1,96 @@
+﻿@model IEnumerable<VLTECH.Models.sp_baocao_ngay_Result>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    decimal? Tongtien = 0;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <br />
+    <h2>Quản lý báo cáo </h2>
+    <p>
+        <button class="btn-default" style="width: 245px; height: 50px; background-color: #179d02; color: #ffffff; border-radius: 5px; border: none;">@Html.ActionLink("Thống kê theo tháng", "Index", "Baocaos")</button>
+    </p>
+
+
+    <p>
+        @using (@Html.BeginForm("Index", "Baocaongays", FormMethod.Get))
+        {
+            <span><strong>Ngày bắt đầu  </strong></span>
+            <input type="date" name="Ngaybd" />
+            <span> </span>
+            <span style="padding-left:60px;"><strong>Ngày kết thúc </strong></span>
+            <input type="date" name="Ngaykt" />
+
+            <input type="submit" value="Thống kê" style="        margin-left: 30px;
+        background-color: #E0E0E0;
+        color: black;
+        padding:5px;
+        padding-right:20px;
+        padding-left:20px;
+        border: none;
+        border-radius: 5px" />
+        }
+
+
+
+    </p>
+    <a href="@Url.Action("Exportexcel","Baocaongays")">Download</a>
+    <table class="table table-bordered" style="text-align: center;">
+        <tr>
+
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Mã đơn
+            </th>
+            
+            <th>
+                Họ tên khách hàng
+            </th>
+            
+            
+            <th>
+                Thành tiền
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            Tongtien += item.Thanhtien;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngaydat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Madon)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoten)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thanhtien)
+                </td>
+
+            </tr>
+        }
+    </table>
+    </br>
+    <div class="txt-summary" style="font-size: large;">
+        <b>TỔNG DOANH THU:</b>
+        @String.Format("{0:0,0}", @Tongtien) VNĐ
+    </div>
+
+</body>
+</html>

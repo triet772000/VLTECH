@@ -1,0 +1,104 @@
+﻿@model VLTECH.Models.Donhang
+   @{
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+        decimal? Tongtien = 0;
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Chi tiết đơn hàng - @Html.DisplayFor(model => model.Madon) </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Madon)
+
+        <div class="form-group">
+            <b>Ngày đặt:</b> @Html.DisplayFor(model => model.Ngaydat)
+        </div>
+
+        <div class="form-group">
+            <b>Tên khách hàng:</b> @Html.DisplayFor(model => model.Nguoidung.Hoten)
+        </div>
+        <table class="table table-bordered" style="text-align: center;">
+            <tr>
+                <th>
+                    Sản phẩm
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Đơn giá / 1 sản phẩm
+                </th>
+                <th>
+                    Ảnh sản phẩm
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Chitietdonhangs)
+            {
+                Tongtien += item.Thanhtien;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sanpham.Tensp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Soluong)
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", item.Dongia) VNĐ
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.Sanpham.Anhbia)" width="50" height="50" />
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", item.Thanhtien) VNĐ
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3" style="text-align:left; font-size: medium;"></td>
+                <td colspan="1" style="text-align:left; font-size: medium; text-align:center">
+                    <b>TỔNG TIỀN</b> 
+                </td>
+                <td colspan="1" style="text-align: left; font-size: medium; text-align: center">
+                     @String.Format("{0:0,0}", @Tongtien) VNĐ
+                </td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <b>Tình trạng đơn hàng</b>
+            @Html.DropDownList("Matt", null, "Đang chờ xác nhận", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Matt, "", new { @class = "text-danger" })
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" value="Save" class="btn btn-default" style="background-color: #179d02; color:#ffffff; text-decoration: none " />
+            <div class="btn btn-default" style="background-color: #ff0000; text-decoration: none;">@Html.ActionLink("Back to List", "Index")</div>
+        </div>
+    </div>
+    }
+
+</body>
+</html>
+
+<style>
+    .btn-default{
+        width: 135px;
+    }
+    .a {
+        color: #ffffff;
+    }
+</style>

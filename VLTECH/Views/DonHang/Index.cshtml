@@ -1,0 +1,77 @@
+﻿@model PagedList.IPagedList<VLTECH.Models.Donhang>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<style>
+    .page-list {
+        position: absolute;
+        bottom: 230px;
+        text-align: center;
+    }
+
+    .page-list a {
+        color: #000000;
+     }
+</style>
+<h2>Danh sách đơn hàng</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Tình trạng đơn hàng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nguoidung.Hoten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaydat)
+            </td>
+            @{
+                if (item.Matt == 3)
+                {
+                    <td style="color: red">
+                        <b>@Html.DisplayFor(modelItem => item.Tinhtrangs.Tinhtrangdonhang)</b>
+                    </td>
+                }
+                else if (item.Matt == 2)
+                {
+                    <td style="color: forestgreen">
+                        <b>@Html.DisplayFor(modelItem => item.Tinhtrangs.Tinhtrangdonhang)</b>
+                    </td>
+                }
+                else
+                {
+                    <td style="color: red">
+                        <b>@Html.DisplayFor(modelItem => item.Tinhtrangs.Tinhtrangdonhang)</b>
+                    </td>
+                }
+            }
+            <td>
+                <button class="btn-primary">
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Madon }, new { @style = "color:white;" })
+                </button>
+
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="page-list">
+    @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount*@
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

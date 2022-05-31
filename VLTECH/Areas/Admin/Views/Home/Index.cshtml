@@ -1,0 +1,119 @@
+﻿@model PagedList.IPagedList<VLTECH.Models.Sanpham>
+
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .input-group form {
+        width: 350px;
+    }
+
+    .page-list {
+        position: absolute;
+        bottom: 140px;
+        text-align: center;
+    }
+    
+</style>
+<h2>Quản lý sản phẩm </h2>
+@using (@Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <div class="input-group" style="width: 400px;">
+       @Html.TextBox("search", null, new { @class = "form-control", @type = "text", @placeholder = "Search for..." })
+       <button class="btn btn-primary" type="submit" value="search"><i class="fas fa-search"></i></button>
+    </div>
+}
+
+</br>
+<p>
+    <button class="btn-default" style="width: 150px; height: 50px; background-color: #179d02; color: #ffffff; border-radius: 5px; border: none;">@Html.ActionLink("Thêm mới", "Create")</button>
+</p>
+<table class="table table-bordered" style="font-size: 20px; text-align:center">
+    <tr>
+
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Giá tiền
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Thẻ sim
+        </th>
+        <th>
+            Ảnh bìa
+        </th>
+        <th>
+            Tên hãng
+        </th>
+        <th>
+            Hệ điều hành
+        </th>
+        <th> Hành động</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensp)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Giatien) VNĐ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thesim)
+            </td>
+            <td>
+                <img src="@Url.Content(item.Anhbia)" width="50" height="50" />
+                @*@Html.DisplayFor(modelItem => item.Anhbia)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Hangsanxuat.Tenhang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Hedieuhanh.Tenhdh)
+            </td>
+            <td>
+                <div style="text-align: center;">
+                    <div class="btn btn-default" style="background-color: #179d02; ">@Html.ActionLink("Sửa", "Edit", new { id = item.Masp })</div>
+                    <div class="btn btn-default" style="background-color: #0364d0; ">@Html.ActionLink("Chi tiết", "Details", new { id = item.Masp })</div>
+                    <div class="btn btn-default" style="background-color: #ff0000; ">@Html.ActionLink("Xoá", "Delete", new { id = item.Masp })</div>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
+<!-- Thêm mã phân trang -->
+<div class="page-list">
+    @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount*@
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search=Request.QueryString["search"] }))
+</div>
+
+
+    <!-- Kết thúc -->.
+
+<style>
+    .btn-default{
+        color: white;
+        width: 95px;
+        text-decoration: none;
+    }
+
+    .page-list a{
+        color:#000000;
+    }
+</style>

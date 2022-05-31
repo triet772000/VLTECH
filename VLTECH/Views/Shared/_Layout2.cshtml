@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel=" stylesheet" href="~/Content/Style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @using VLTECH.Models
+
+    <style type="text/css">
+        body {
+            background-color: #F0F0F0;
+            padding-bottom: 0px;
+            position: relative;
+            min-height: 97vh;
+        }
+
+        .bg-info {
+            background-color: #BC0022;
+            color: white;
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .bg-primary {
+            margin-bottom: 0px;
+            background-color: #808080;
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+        }
+
+        .a {
+            text-decoration: none;
+        }
+
+        .navbar-inverse {
+            background-color: #BC0022;
+            border-color: #BC0022;
+        }
+
+        .top_header {
+            background-color: black;
+            padding-left: 110px;
+            color: white;
+        }
+
+        .form-inline {
+            float: right;
+            padding-top: 8px;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: white;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+        }
+
+            .navbar-inverse .navbar-nav > li > a:hover {
+                color: black;
+            }
+
+        .navbar-brand {
+            color: cadetblue;
+        }
+
+        .spnoibat {
+            background-color: white;
+        }
+
+            .spnoibat h3 {
+                padding-left: 30px;
+            }
+
+        .giohang {
+            color: white;
+            position: relative;
+            top: 15px;
+        }
+
+
+            .giohang a: hover {
+                color: black;
+            }
+
+        .header-info {
+            position: relative;
+            width: 80%;
+            text-align: right;
+            right: 90px;
+        }
+
+        .navbar-nav:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        .navbar-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            display: none;
+            position: absolute;
+            min-width: 120px;
+            background-color: #BC0022;
+        }
+
+        .menu-right .navbar-nav ul {
+            right: 0;
+            width: 200px;
+            text-align: center;
+            padding-left: 0px;
+        }
+
+
+        .navbar-nav ul li {
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-bottom: 1px solid #808080;
+        }
+
+
+        .navbar-nav > ul > li {
+            float: left;
+            position: relative;
+            padding: 15px;
+        }
+
+        .navbar-nav ul li a:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+        .navbar ul li:hover > ul {
+            display: block;
+            animation-duration: 10s;
+        }
+
+        .dropdown-menu2 a {
+            color: white;
+            padding-left: 15px;
+        }
+
+        .dropdown-menu3 a {
+            color: white;
+            padding-left: 15px;
+        }
+
+        .menu-right {
+            width: 30%;
+            float: right;
+        }
+
+            .menu-right i {
+                font-size: 30px;
+            }
+
+        .menu-user {
+            position: relative;
+            right: -290px;
+        }
+
+        .menu-cart {
+            position: relative;
+            right: -170px;
+        }
+
+        #dropdown-user {
+            right: 0;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    @{
+        var u = Session["use"] as VLTECH.Models.Nguoidung;
+    }
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header" style="padding-top: 8px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <b>@Html.ActionLink("VLTECH", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</b>
+                @using (@Html.BeginForm("Index", "Timkiem", FormMethod.Get, new { @class = "form-inline" }))
+                {
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*@
+                }
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav" id="dropdown-menu" style="padding-top: 8px;">
+                    <li>
+                        <a href="#" title="dienthoai">
+                            ĐIỆN THOẠI
+                        </a>
+                        <ul class="dropdown-menu2">
+                            @*<div class="danhmuc">
+                                    @Html.Action("DanhmucPartial", "Danhmuc")
+                                </div>*@
+                            <li><a href="@Url.Action("dtiphonePartial", "Sanpham")">IPHONE</a></li>
+                            <li><a href="@Url.Action("dtsamsungpartial", "Sanpham")">SAMSUNG</a></li>
+                            <li><a href="#">XIAOMI</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" title="LAPTOP">
+                            LAPTOP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="PHUKIEN">
+                            PHỤ KIỆN
+                        </a>
+                    </li>
+                </ul>
+
+
+                <div class="menu-right">
+                    <div class="menu-user">
+                        @{
+                            if (u != null)
+                            {
+                                <ul class="nav navbar-nav" id="dropdown-user">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-user"></i>
+                                        </a>
+                                        <ul class="dropdown-menu3">
+                                            <li style="color: white;">Hi, @u.Email</li>
+                                            <li><a style="color:white" class="nav-link" href="@Url.Action("Edit", "User", new { id = u.MaNguoiDung })">THÔNG TIN</a></li>
+                                            <li><a style="color:white" class="nav-link" href="@Url.Action("Index", "DonHang")">ĐƠN HÀNG</a></li>
+                                            <li><a style="color: white" href="/User/DangXuat"> ĐĂNG XUẤT</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav" id="dropdown-user">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-user"></i>
+                                        </a>
+                                        <ul class="dropdown-menu3">
+                                            <li> <a style="color:white" href="/User/Dangnhap"> Đăng nhập</a></li>
+                                            <li><a style="color:white" href="/User/Dangky"> Đăng ký</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                    </div>
+                    <div class="menu-cart">
+                        @Html.Action("GioHangPartial", "GioHang", new { @class = "giohang" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <br>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="bg-info" style="padding-left:50px">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <h2>Bảo hành</h2>
+                <span>Chính sách mua hàng</span>
+                <br />
+                <span>Chính sách bảo hành</span>
+                <br />
+                <span>Trung tâm bảo hành</span>
+                <br />
+                <span>Tra cứu bảo hành</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h2>Liên kết</h2>
+                <span>Tin tức</span>
+                <br />
+                <span>Tuyển dụng</span>
+                <br />
+                <span>Khiếu nại</span>
+                <br />
+                <span>Cửa hàng</span>
+
+
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h2>Thông tin</h2>
+                <span>Về chúng tôi</span>
+                <br />
+                <span>Liên hệ</span>
+                <br />
+                <span>Góp ý</span>
+                <br />
+                <span>Tra cứu</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h2>Theo dõi</h2>
+                <span>Kênh youtube</span>
+                <br />
+                <span>Fanpage</span>
+                <br />
+                <span>Shopee</span>
+                <br />
+                <span>Group</span>
+            </div>
+        </div>
+        </br>
+    </footer>
+    <center> <p class="bg-primary">&copy; @DateTime.Now.Year</p></center>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

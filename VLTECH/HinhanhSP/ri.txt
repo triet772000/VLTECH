@@ -1,0 +1,10 @@
+II) Use Cases Description:	
+2.19 Use case 20: (UC5.3 – Xóa đơn hàng)
+2.21 Use case 22: (UC6.1 – Tìm kiếm báo cáo)
+2.31 Use case 32: (UC9.1 – Tìm kiếm mặt hàng)
+2.33 Use case 34: (UC10.1 – Tùy chọn thông tin, cấu hình)
+2.35 Use case 36: (UC11.1 – Xóa mặt hàng trong giỏ hàng)
+2.36 Use case 37: (UC11.2 – Tùy chỉnh số lượng mặt hàng)
+2.37 Use case 38: (UC12.0 – Xem chi tiết đơn hàng)
+2.38 Use case 39: (UC12.1 – Hủy đơn hàng)
+2.39 Use case 40: (UC12.2 – Chọn phương thức thanh toán)

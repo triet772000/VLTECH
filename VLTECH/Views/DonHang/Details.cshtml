@@ -1,0 +1,57 @@
+﻿@model IEnumerable<VLTECH.Models.Chitietdonhang>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    decimal? Tongtien = 0;
+}
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Sản phẩm
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá / 1 sản phẩm
+        </th>
+        <th>
+            Ảnh sản phẩm
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        Tongtien += item.Thanhtien;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sanpham.Tensp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Dongia) VNĐ
+            </td>
+            <td>
+                <img src="@Url.Content(item.Sanpham.Anhbia)" width="50" height="50" />
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Thanhtien) VNĐ
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5" style="text-align:left; font-size: medium;">
+            Tổng tiền:  @String.Format("{0:0,0}", @Tongtien) VNĐ
+        </td>
+    </tr>
+
+</table>
