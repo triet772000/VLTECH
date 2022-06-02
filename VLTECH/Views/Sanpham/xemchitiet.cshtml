@@ -4,7 +4,7 @@
 
 @{
     ViewBag.Title = "Chi tiết sản phẩm";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
     #left {
@@ -18,16 +18,18 @@
         float: left;
         width: 50%;
     }
-    #btn-muahang {
-        text-align: center;
+    #bottom {
+        clear: both;
+        font-size: 18px;
     }
 
-    #btn-muahang input{
+    #btn-muahang input {
         width: 180px;
         height: 40px;
         color: white;
-        background-color: #00d311;
+        background-color: #BC0022;
         border: none;
+        text-transform: uppercase;
     }
 </style>
 <br />
@@ -40,9 +42,6 @@
          <div id="right">
              <h3> @Model.Tensp</h3>
              <h2 style="color:red">@String.Format("{0:0,0}", @Model.Giatien) VNĐ</h2>
-             <h3>Mô tả sản phẩm</h3>
-             @Model.Mota
-             <br />
              <br />
              <div id="btn-muahang">
                  @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = Model.Masp, @strURL = Request.Url.ToString() }))
@@ -50,6 +49,66 @@
                      <input type="submit" value="Thêm vào giỏ hàng" id="bgnGioHang" />
 
                  }
+
+
              </div>
-         </div>     
+             @{
+                 if (Model.Soluong <= 5)
+                 {
+                     <dd style="color: #808080; padding-top: 5px;">Còn lại @Html.DisplayFor(model => model.Soluong) sản phẩm</dd>
+                 }
+
+             }
+         </div>
+         <div id="bottom">
+             <h2>Mô tả sản phẩm</h2>
+             @Model.Mota
+             <table class="table table-bordered" style="font-size: 20px; text-align:center">
+                 <tr>
+                     <th colspan="2" style="text-align: center; font-size: 30px;">
+                         Thông số kỹ thuật
+                     </th>
+                 </tr>
+                 <tr>
+                     <th>
+                         Hãng sản xuất
+                     </th>
+                     <td>
+                         @Html.DisplayFor(model => model.Hangsanxuat.Tenhang)
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>
+                         Hệ điều hành
+                     </th>
+                     <td>
+                         @Html.DisplayFor(model => model.Hedieuhanh.Tenhdh)
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>
+                         Bộ nhớ trong
+                     </th>
+                     <td>
+                         @Html.DisplayFor(model => model.Bonhotrong) GB
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>
+                         RAM
+                     </th>
+                     <td>
+                         @Html.DisplayFor(model => model.Ram) GB
+                     </td>
+                 </tr>
+                  <tr>
+                     <th>
+                        Hỗ trợ sim
+                     </th>
+                     <td>
+                         @Html.DisplayFor(model => model.Thesim)
+                     </td>
+                 </tr>
+             </table>
+         </div>
     </div>
