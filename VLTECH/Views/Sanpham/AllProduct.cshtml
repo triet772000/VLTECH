@@ -34,22 +34,30 @@
     }
     <style>
         .card {
-            /* Add shadows to create the "card" effect */
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.5s;
             border-radius: 6px;
             padding-top: 20px;
             padding-bottom: 10px;
-            
-
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
         }
         
 
-            /* On mouse-over, add a deeper shadow */
+           
             .card:hover {
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
                 transform: scale(1.02);
                 border: 1px solid #ea7ba0;
+                
             }
     </style>
     
