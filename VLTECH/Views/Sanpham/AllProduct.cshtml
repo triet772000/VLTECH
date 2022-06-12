@@ -1,22 +1,22 @@
 ﻿@using VLTECH.Models;
 @model PagedList.IPagedList<VLTECH.Models.Sanpham>
-
 @using PagedList.Mvc;
 @{
+    ViewBag.Title = "All Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row">
-    <div class=" bg-danger; style="background-color: none; justify-content: center"><h3 style="border-bottom: 2px solid #808080; width: 300px; text-align: center; position: relative; left: 420px;">KẾT QUẢ TÌM KIẾM </h3></div>
+    <div class=" bg-danger; style="background-color: none; justify-content: center"><h3 style="border-bottom: 2px solid #808080; width: 300px; text-align: center; position: relative; left: 420px;"> TẤT CẢ SẢN PHẨM </h3></div>
+    <br />
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("xemchitiet", "Sanpham",new {@Masp=item.Masp })">
+        <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">
             <div class="col-md-3 col-sm-6">
 
                 <div class="card" style="width:400; background-color:white;">
-
-                    <img src=@Url.Content(item.Anhbia) class="img-responsive card-img-top" alt="" width="400" height="400" />
-
+                    
+                        <img src=@Url.Content(item.Anhbia) class="img-responsive card-img-top" alt="" width="400" height="400" />
+                    
                     <div class="card-body">
                         <br />
                         <center>
@@ -40,8 +40,10 @@
             border-radius: 6px;
             padding-top: 20px;
             padding-bottom: 10px;
-        }
+            
 
+        }
+        
 
             /* On mouse-over, add a deeper shadow */
             .card:hover {
@@ -50,6 +52,8 @@
                 border: 1px solid #ea7ba0;
             }
     </style>
+    
+
 
     @*<div class="col-md-3 col-sm-6">
             <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
@@ -61,10 +65,10 @@
             <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
         </div>*@
 </div>
-<br />
-
-<!-- Thêm mã phân trang -->
-<div class="page-list">
+</br>
+<div style="text-align: center; font-size: 15px">
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }))
+
+    @Html.PagedListPager(Model, page => Url.Action("AllProduct", "Sanpham", new { page }))
 </div>
+

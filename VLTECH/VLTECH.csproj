@@ -427,6 +427,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\TImKiem\Index.cshtml" />
+    <Content Include="Views\Sanpham\AllProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

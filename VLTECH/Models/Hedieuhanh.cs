@@ -11,7 +11,8 @@ namespace VLTECH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Hedieuhanh
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace VLTECH.Models
         }
     
         public int Mahdh { get; set; }
+        [Display(Name = "Hêò ðiêÌu haÌnh")]
         public string Tenhdh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

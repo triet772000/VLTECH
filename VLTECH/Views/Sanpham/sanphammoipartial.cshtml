@@ -3,24 +3,60 @@
 @model List<Sanpham>
 <div class="row">
     <div class=" bg-danger; style="background-color: none; justify-content: center"><h3 style="border-bottom: 2px solid #808080; width: 300px; text-align: center; position: relative; left: 420px;"> SẢN PHẨM MỚI </h3></div>
+    <br />
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-sm-6">
-            <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">
-                <img src=@Url.Content(item.Anhbia) class="img-responsive" alt="" width="400" height="400" />
-            </a>
-            <center>
-                <h3> @item.Tensp</h3>
-                <h3 style="color:red">@String.Format("{0:0,0}", item.Giatien) VNĐ</h3>
+        <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">
+            <div class="col-md-3 col-sm-6">
+
+                <div class="card" style="width:400; background-color:white;">
+
+                    <img src=@Url.Content(item.Anhbia) class="img-responsive card-img-top" alt="" width="400" height="400" />
+
+                    <div class="card-body">
+                        <br />
+                        <center>
+                            <h4 style="color: black"> @item.Tensp</h4>
+                            <h3 style="color:#B22222; font-weight:600">@String.Format("{0:0,0}", item.Giatien) VNĐ</h3>
+
+                        </center>
+                    </div>
+
+                </div>
                 <br />
-
-                @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
-
-
-            </center>
-
-        </div>
+                <br />
+            </div>
+        </a>
     }
+    <center>
+        <a  class="anchorcolor" href="@Url.Action("AllProduct", "Sanpham")" style="color: darkred;text-decoration:none">
+            <h4>Xem tất cả >></h4>
+        </a>
+    </center>
+    <style>
+        
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50; /* Green */
+        }
+        .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.5s;
+            border-radius: 6px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                transform: scale(1.02);
+                border: 1px solid #ea7ba0;
+            }
+    </style>
 
 
     @*<div class="col-md-3 col-sm-6">

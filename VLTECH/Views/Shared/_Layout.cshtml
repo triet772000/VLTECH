@@ -205,10 +205,10 @@
                 <b>@Html.ActionLink("VLTECH", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</b>
                 @using (@Html.BeginForm("Index", "Timkiem", FormMethod.Get, new { @class = "form-inline" }))
                 {
-                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                    <input class="form-control mr-sm-2" style="" type="search" name="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
                     <button class="btn btn-primary" type="submit" value="search"><i class="fas fa-search"></i></button>
                 }
-            </div>
+            </div>  
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav" id="dropdown-menu" style="padding-top: 8px;">
@@ -218,23 +218,16 @@
                         </a>
                         <ul class="dropdown-menu2">
                             @*<div class="danhmuc">
-                                    @Html.Action("DanhmucPartial", "Danhmuc")
-                                </div>*@
+            @Html.Action("DanhmucPartial", "Danhmuc")
+        </div>*@
+                            <li><a href="@Url.Action("AllProduct", "Sanpham")">TẤT CẢ</a></li>
                             <li><a href="@Url.Action("dtiphonePartial", "Sanpham")">IPHONE</a></li>
                             <li><a href="@Url.Action("dtsamsungpartial", "Sanpham")">SAMSUNG</a></li>
                             <li><a href="#">XIAOMI</a></li>
+                            
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" title="LAPTOP">
-                            LAPTOP
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" title="PHUKIEN">
-                            PHỤ KIỆN
-                        </a>
-                    </li>
+                    
                 </ul>
 
 
