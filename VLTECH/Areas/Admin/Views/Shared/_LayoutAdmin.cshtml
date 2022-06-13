@@ -32,13 +32,14 @@
         </form>
 
         <!-- Navbar-->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
+        <ul class="navbar-nav ml-auto ml-md-0" >
+            <h7 class="nav-item dropdown" style="color:black">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/Admin/Login/Dangnhap">Đăng xuất</a>
-                </div>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"style="background-color:#BC0022; text-align:center">
+                   
+                        <h7 style="text-align:center;color:black; text-decoration:none">@Html.ActionLink("Đăng xuất", "DangXuat", "Login")</h7>
+                    
+</div>
             </li>
         </ul>
     </nav>
@@ -72,6 +73,7 @@
                             @Html.ActionLink("Báo cáo", "Index", "Baocaos")
                         </div>
                         <br />
+                        
 
                         @*<div style="padding-left:20px">
             @Html.ActionLink("Phân quyền", "Index", "Phanquyens")
