@@ -129,10 +129,14 @@ namespace VLTECH.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            
             Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
             db.Hangsanxuats.Remove(hangsanxuat);
             db.SaveChanges();
             return RedirectToAction("Index");
+            
+            
+            
         }
 
         protected override void Dispose(bool disposing)

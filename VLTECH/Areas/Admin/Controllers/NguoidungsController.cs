@@ -95,6 +95,7 @@ namespace VLTECH.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
             return View(nguoidung);
         }
 
@@ -111,10 +112,12 @@ namespace VLTECH.Areas.Admin.Controllers
                 oldUser.Email = nguoidung.Email;
                 oldUser.Dienthoai = nguoidung.Dienthoai;
                 oldUser.Diachi = nguoidung.Diachi;
+                oldUser.IDQuyen = nguoidung.IDQuyen;
                 //db.Entry(nguoidung).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
             return View(nguoidung);
         }
 
